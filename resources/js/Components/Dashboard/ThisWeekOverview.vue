@@ -264,7 +264,7 @@ const option = computed(() => {
                         : '--'
                 " />
             <StatCard
-                title="Billable Time"
+                :title="$t('Billable Time')"
                 :value="
                     totalWeeklyBillableTime
                         ? formatReportingDuration(
@@ -274,12 +274,12 @@ const option = computed(() => {
                           )
                         : '--'
                 " />
-            <StatCard v-if="billableRatesLocked" title="Billable Amount">
+            <StatCard v-if="billableRatesLocked" :title="$t('Billable Amount')">
                 <UpgradeLockedValue />
             </StatCard>
             <StatCard
                 v-else
-                title="Billable Amount"
+                :title="$t('Billable Amount')"
                 :value="
                     totalWeeklyBillableAmount
                         ? formatCents(

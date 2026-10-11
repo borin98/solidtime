@@ -153,18 +153,20 @@ const showResultModal = ref(false);
             </div>
         </template>
         <template #footer>
-            <SecondaryButton @click="showResultModal = false"> Close </SecondaryButton>
+            <SecondaryButton @click="showResultModal = false"> {{ $t('Close') }} </SecondaryButton>
         </template>
     </DialogModal>
     <div>
-        <CardTitle title="Import Data" :icon="ArrowDownOnSquareIcon"></CardTitle>
+        <CardTitle :title="$t('Import Data')" :icon="ArrowDownOnSquareIcon"></CardTitle>
         <Card class="mb-3">
             <div class="py-2 px-3 sm:px-4 text-sm flex items-center space-x-3">
                 <InformationCircleIcon class="h-5 min-w-0 w-5 text-bg-tertiary" />
                 <p class="flex-1">
-                    Import existing data from Toggl, Clockify, Harvest, generic CSV files or a
-                    different solidtime instance. Please select the type of data you want to import
-                    and follow the instructions.
+                    {{
+                        $t(
+                            'Import existing data from Toggl, Clockify, Harvest, generic CSV files or a different solidtime instance. Please select the type of data you want to import and follow the instructions.'
+                        )
+                    }}
                 </p>
             </div>
             <div
@@ -172,9 +174,11 @@ const showResultModal = ref(false);
                 class="py-2 px-3 sm:px-4 text-sm flex items-center space-x-3 border-t border-card-background-separator">
                 <ExclamationTriangleIcon class="h-5 min-w-0 w-5 text-yellow-500" />
                 <p class="flex-1">
-                    Billable rates and billable status will not be imported, since they are not
-                    available in the free plan. All projects and time entries will be imported as
-                    non-billable.
+                    {{
+                        $t(
+                            'Billable rates and billable status will not be imported, since they are not available in the free plan. All projects and time entries will be imported as non-billable.'
+                        )
+                    }}
                 </p>
             </div>
         </Card>
@@ -182,14 +186,14 @@ const showResultModal = ref(false);
         <Card>
             <div class="px-4 py-5 sm:px-5">
                 <Field>
-                    <FieldLabel for="importType">Import Type</FieldLabel>
+                    <FieldLabel for="importType">{{ $t('Import Type') }}</FieldLabel>
                     <select
                         id="importType"
                         v-model="importType"
                         name="importType"
                         class="block w-full border-input-border bg-input-background text-text-primary focus:border-input-border-active rounded-md shadow-sm">
                         <option :value="null" selected disabled>
-                            Select an import type to get instructions...
+                            {{ $t('Select an import type to get instructions...') }}
                         </option>
                         <option
                             v-for="importTypeOption in importTypeOptions"

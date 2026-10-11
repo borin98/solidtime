@@ -133,10 +133,10 @@ const billableRatesLocked = computed(() => !canUseBillableRates());
                         v-if="
                             project?.is_billable && !project?.billable_rate && !billableRatesLocked
                         ">
-                        Default Rate
+                        {{ $t('Default Rate') }}
                     </Badge>
-                    <Badge v-if="!project?.is_billable"> Non-Billable </Badge>
-                    <Badge>{{ project?.is_public ? 'Public' : 'Private' }}</Badge>
+                    <Badge v-if="!project?.is_billable"> {{ $t('Non-Billable') }} </Badge>
+                    <Badge>{{ project?.is_public ? $t('Public') : $t('Private') }}</Badge>
                 </div>
             </nav>
             <div>
@@ -144,7 +144,7 @@ const billableRatesLocked = computed(() => !canUseBillableRates());
                     v-if="canCreateProjects()"
                     :icon="PencilSquareIcon"
                     @click="showEditProjectModal = true">
-                    Edit Project
+                    {{ $t('Edit Project') }}
                 </SecondaryButton>
                 <ProjectEditModal
                     v-if="project"

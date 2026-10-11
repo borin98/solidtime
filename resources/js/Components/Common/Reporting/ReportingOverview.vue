@@ -312,20 +312,20 @@ const { locked: billableRatesLocked } = useBillableRatesLock();
     <MainContainer
         class="h-14 sm:h-16 border-b border-default-background-separator flex flex-wrap gap-y-3 justify-between items-center">
         <div class="flex items-center space-x-3 sm:space-x-6">
-            <PageTitle :icon="ChartBarIcon" title="Reporting"></PageTitle>
+            <PageTitle :icon="ChartBarIcon" :title="$t('Reporting')"></PageTitle>
             <ReportingTabNavbar active="reporting" class="hidden sm:flex"></ReportingTabNavbar>
         </div>
         <div class="hidden sm:flex space-x-2">
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <SecondaryButton :icon="ArrowDownTrayIcon" :loading="exportLoading">
-                        Export
+                        {{ $t('Export') }}
                     </SecondaryButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem @click="triggerExport('pdf')">
                         <div class="flex items-center space-x-2">
-                            <span>Export as PDF</span>
+                            <span>{{ $t('Export as PDF') }}</span>
                             <LockClosedIcon
                                 v-if="!isAllowedToPerformPremiumAction()"
                                 class="w-3.5 text-text-tertiary" />

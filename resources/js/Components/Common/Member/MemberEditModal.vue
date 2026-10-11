@@ -150,7 +150,7 @@ const roleDescription = computed(() => {
             <div class="pb-5 pt-2 divide-y divide-border-secondary">
                 <div class="pb-5">
                     <Field>
-                        <FieldLabel for="role">Role</FieldLabel>
+                        <FieldLabel for="role">{{ $t('Role') }}</FieldLabel>
                         <MemberRoleSelect v-model="memberBody.role" name="role"></MemberRoleSelect>
                         <FieldDescription v-if="roleDescription">{{
                             roleDescription
@@ -159,9 +159,9 @@ const roleDescription = computed(() => {
                 </div>
                 <div class="pt-5">
                     <Field>
-                        <FieldLabel :icon="BillableIcon" for="billableRateType"
-                            >Billable Rate</FieldLabel
-                        >
+                        <FieldLabel :icon="BillableIcon" for="billableRateType">{{
+                            $t('Billable Rate')
+                        }}</FieldLabel>
                         <BillableRateInput
                             v-if="billableRatesLocked"
                             v-model="displayedRate"
@@ -173,8 +173,8 @@ const roleDescription = computed(() => {
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="default-rate">Default Rate</SelectItem>
-                                    <SelectItem value="custom-rate">Custom Rate</SelectItem>
+                                    <SelectItem value="default-rate">{{ $t('Default Rate') }}</SelectItem>
+                                    <SelectItem value="custom-rate">{{ $t('Custom Rate') }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <TooltipProvider v-if="billableRateSelect === 'default-rate'">
@@ -189,7 +189,7 @@ const roleDescription = computed(() => {
                                         </div>
                                     </TooltipTrigger>
                                     <TooltipContent
-                                        >Uses the default rate of the organization</TooltipContent
+                                        >{{ $t('Uses the default rate of the organization') }}</TooltipContent
                                     >
                                 </Tooltip>
                             </TooltipProvider>

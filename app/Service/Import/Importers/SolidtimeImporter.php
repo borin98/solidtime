@@ -266,7 +266,7 @@ class SolidtimeImporter extends DefaultImporter
                 }
                 $timeEntry->description = $timeEntryRow['description'];
                 if (! in_array($timeEntryRow['billable'], ['true', 'false'], true)) {
-                    throw new ImportException('Invalid billable value');
+                    throw new ImportException(__('Invalid billable value'));
                 }
                 $timeEntry->billable = $this->canUseBillableRates && $timeEntryRow['billable'] === 'true';
                 // The type column does not exist in old exports
@@ -293,10 +293,10 @@ class SolidtimeImporter extends DefaultImporter
                 try {
                     $end = Carbon::createFromFormat('Y-m-d\TH:i:s\Z', $timeEntryRow['end'], 'UTC');
                 } catch (InvalidFormatException) {
-                    throw new ImportException('End date ("'.$timeEntryRow['end'].'") is invalid');
+                    throw new ImportException(__('End date (":value") is invalid', ['value' => $timeEntryRow['end']]));
                 }
                 if ($end === null) {
-                    throw new ImportException('End date ("'.$timeEntryRow['end'].'") is invalid');
+                    throw new ImportException(__('End date (":value") is invalid', ['value' => $timeEntryRow['end']]));
                 }
                 if ($end->lt($start)) {
                     throw new ImportException('End date ("'.$timeEntryRow['end'].'") is before start date ("'.$timeEntryRow['start'].'")');

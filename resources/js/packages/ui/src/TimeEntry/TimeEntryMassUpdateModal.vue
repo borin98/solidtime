@@ -253,36 +253,38 @@ const showBreakWarning = computed(
                     </div>
                 </Field>
                 <Field>
-                    <FieldLabel>Billable</FieldLabel>
+                    <FieldLabel>{{ $t('Billable') }}</FieldLabel>
                     <Select v-model="timeEntryBillable">
                         <SelectTrigger>
                             <SelectValue>
-                                <span v-if="billable === undefined">Set billable status</span>
-                                <span v-else-if="billable === true">Billable</span>
-                                <span v-else>Non Billable</span>
+                                <span v-if="billable === undefined">{{
+                                    $t('Set billable status')
+                                }}</span>
+                                <span v-else-if="billable === true">{{ $t('Billable') }}</span>
+                                <span v-else>{{ $t('Non Billable') }}</span>
                             </SelectValue>
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="do-not-update">
-                                Keep current billable status
+                                {{ $t('Keep current billable status') }}
                             </SelectItem>
-                            <SelectItem value="billable" :disabled="billableRatesLocked"
-                                >Billable</SelectItem
-                            >
-                            <SelectItem value="non-billable">Non Billable</SelectItem>
+                            <SelectItem value="billable" :disabled="billableRatesLocked">{{
+                                $t('Billable')
+                            }}</SelectItem>
+                            <SelectItem value="non-billable">{{ $t('Non Billable') }}</SelectItem>
                         </SelectContent>
                     </Select>
                 </Field>
             </div>
         </template>
         <template #footer>
-            <SecondaryButton @click="show = false"> Cancel</SecondaryButton>
+            <SecondaryButton @click="show = false"> {{ $t('Cancel') }}</SecondaryButton>
             <PrimaryButton
                 class="ms-3"
                 :class="{ 'opacity-25': saving }"
                 :disabled="saving"
                 @click="submit">
-                Update Time Entries
+                {{ $t('Update Time Entries') }}
             </PrimaryButton>
         </template>
     </DialogModal>

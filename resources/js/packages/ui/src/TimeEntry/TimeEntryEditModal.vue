@@ -247,22 +247,24 @@ const typeProxy = computed({
                                 <SelectValue class="flex items-center gap-2">
                                     <BillableIcon class="h-4 text-icon-default" />
                                     <span>{{
-                                        editableTimeEntry.billable ? 'Billable' : 'Non-Billable'
+                                        editableTimeEntry.billable
+                                            ? $t('Billable')
+                                            : $t('Non-Billable')
                                     }}</span>
                                 </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="true" :disabled="billableOptionLocked"
-                                    >Billable</SelectItem
-                                >
-                                <SelectItem value="false">Non Billable</SelectItem>
+                                <SelectItem value="true" :disabled="billableOptionLocked">{{
+                                    $t('Billable')
+                                }}</SelectItem>
+                                <SelectItem value="false">{{ $t('Non Billable') }}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-4">
                     <Field class="col-span-2 sm:col-span-3">
-                        <FieldLabel>Duration</FieldLabel>
+                        <FieldLabel>{{ $t('Duration') }}</FieldLabel>
                         <div class="space-y-2 flex flex-col">
                             <DurationHumanInput
                                 v-model:start="localStart"

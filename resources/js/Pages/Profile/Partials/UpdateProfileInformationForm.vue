@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
                             type="button"
                             :disabled="!isUserLoaded || resetPendingEmail.isPending.value"
                             @click="clickCancelEmailChange">
-                            Cancel email change
+                            {{ $t('Cancel email change') }}
                         </Button>
                     </div>
                 </div>
@@ -287,24 +287,24 @@ onBeforeUnmount(() => {
 
             <!-- Timezone -->
             <Field class="col-span-6 sm:col-span-4">
-                <FieldLabel for="timezone">Timezone</FieldLabel>
+                <FieldLabel for="timezone">{{ $t('Timezone') }}</FieldLabel>
                 <TimezoneCombobox id="timezone" v-model="timezone" :disabled="!isUserLoaded" />
                 <FieldError v-if="fieldErrors.timezone">{{ fieldErrors.timezone }}</FieldError>
             </Field>
 
             <!-- Week start -->
             <Field class="col-span-6 sm:col-span-4">
-                <FieldLabel for="week_start">Start of the week</FieldLabel>
+                <FieldLabel for="week_start">{{ $t('Start of the week') }}</FieldLabel>
                 <WeekStartSelect id="week_start" v-model="weekStart" :disabled="!isUserLoaded" />
                 <FieldError v-if="fieldErrors.week_start">{{ fieldErrors.week_start }}</FieldError>
             </Field>
         </template>
 
         <template #actions>
-            <ActionMessage :on="recentlySaved" class="me-3"> Saved. </ActionMessage>
+            <ActionMessage :on="recentlySaved" class="me-3"> {{ $t('Saved.') }} </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': isSaveDisabled }" :disabled="isSaveDisabled">
-                Save
+                {{ $t('Save') }}
             </PrimaryButton>
         </template>
     </FormSection>
