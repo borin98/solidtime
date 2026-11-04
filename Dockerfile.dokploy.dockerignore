@@ -1,0 +1,11 @@
+.git
+**/.git
+.github
+.DS_Store
+node_modules
+extensions/*/node_modules
+.phpunit.cache
+test-results
+playwright-report
+storage/logs/*
+auth.json

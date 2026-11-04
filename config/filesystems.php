@@ -63,6 +63,8 @@ return [
             'temporary_url' => env('S3_URL'),
             'endpoint' => env('S3_ENDPOINT'),
             'use_path_style_endpoint' => env('S3_USE_PATH_STYLE_ENDPOINT', false),
+            // Fork RSYS: S3_RESOLVE="host:443:ip" fixa o IP do endpoint (sem hairpin NAT) mantendo o Host assinado.
+            'http' => env('S3_RESOLVE') ? ['curl' => [CURLOPT_RESOLVE => [env('S3_RESOLVE')]]] : [],
             'throw' => true,
             'report' => false,
         ],
