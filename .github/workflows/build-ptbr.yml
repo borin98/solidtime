@@ -1,0 +1,68 @@
+name: Build - pt-BR fork
+
+on:
+  push:
+    branches:
+      - prod-ptbr
+  workflow_dispatch:
+
+permissions:
+  packages: write
+  contents: read
+
+env:
+  # shortcut: só amd64 (workers RSYS são x86), adicionar arm64 se necessário
+  IMAGE: ghcr.io/borin98/solidtime
+  BASE_VERSION: 0.22.1
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: "Prepare .env"
+        run: |
+          cp .env.production .env
+          rm .env.production .env.ci .env.example
+          sed -i "s/APP_VERSION=0.0.0/APP_VERSION=${BASE_VERSION}-ptbr/" .env
+          sed -i "s/APP_BUILD=0/APP_BUILD=$(git rev-parse --short=8 HEAD)/" .env
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, fileinfo, pgsql
+
+      - run: composer install --no-dev --no-ansi --no-interaction --prefer-dist --ignore-platform-reqs --classmap-authoritative
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '20.x'
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - uses: docker/login-action@v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: docker/prod/Dockerfile
+          build-args: |
+            DOCKER_FILES_BASE_PATH=docker/prod/
+            TZ=America/Sao_Paulo
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ env.BASE_VERSION }}-ptbr
+            ${{ env.IMAGE }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
