@@ -187,7 +187,9 @@ const billableProxy = computed({
                         <SelectTrigger :show-chevron="false">
                             <SelectValue class="flex items-center gap-2">
                                 <BillableIcon class="h-4 text-icon-default" />
-                                <span>{{ timeEntry.billable ? $t('Billable') : $t('Non-Billable') }}</span>
+                                <span>{{
+                                    timeEntry.billable ? $t('Billable') : $t('Non-Billable')
+                                }}</span>
                             </SelectValue>
                         </SelectTrigger>
                         <SelectContent>
@@ -206,7 +208,9 @@ const billableProxy = computed({
                 class="pt-4"></TimeRangeFields>
         </template>
         <template #footer>
-            <SecondaryButton tabindex="2" @click="show = false"> {{ $t('Cancel') }}</SecondaryButton>
+            <SecondaryButton tabindex="2" @click="show = false">
+                {{ $t('Cancel') }}</SecondaryButton
+            >
             <PrimaryButton
                 tabindex="2"
                 class="ms-3"

@@ -102,7 +102,9 @@ const emit = defineEmits(['submit']);
         <FieldDescription>{{ billableDescription }}</FieldDescription>
     </Field>
     <Field>
-        <FieldLabel :icon="BillableIcon" for="billableRateType">{{ $t('Billable Rate') }}</FieldLabel>
+        <FieldLabel :icon="BillableIcon" for="billableRateType">{{
+            $t('Billable Rate')
+        }}</FieldLabel>
         <BillableRateInput
             v-if="billableRatesLocked"
             v-model="displayedRate"

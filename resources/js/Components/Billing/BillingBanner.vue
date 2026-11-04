@@ -23,7 +23,9 @@ const showBlockedBanner = computed(() => isBlocked() && !hideBlockedBanner.value
             <div class="flex items-center space-x-1.5">
                 <XCircleIcon class="w-4 text-text-primary/50"></XCircleIcon>
                 <div class="flex-1 space-x-1">
-                    <span class="font-medium"> {{ $t('Your organization is currently blocked.') }} </span>
+                    <span class="font-medium">
+                        {{ $t('Your organization is currently blocked.') }}
+                    </span>
                     <span class="hidden md:inline">
                         {{
                             $t(

@@ -173,8 +173,12 @@ const roleDescription = computed(() => {
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="default-rate">{{ $t('Default Rate') }}</SelectItem>
-                                    <SelectItem value="custom-rate">{{ $t('Custom Rate') }}</SelectItem>
+                                    <SelectItem value="default-rate">{{
+                                        $t('Default Rate')
+                                    }}</SelectItem>
+                                    <SelectItem value="custom-rate">{{
+                                        $t('Custom Rate')
+                                    }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <TooltipProvider v-if="billableRateSelect === 'default-rate'">
@@ -188,9 +192,9 @@ const roleDescription = computed(() => {
                                                 name="memberBillableRate" />
                                         </div>
                                     </TooltipTrigger>
-                                    <TooltipContent
-                                        >{{ $t('Uses the default rate of the organization') }}</TooltipContent
-                                    >
+                                    <TooltipContent>{{
+                                        $t('Uses the default rate of the organization')
+                                    }}</TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
                             <BillableRateInput
